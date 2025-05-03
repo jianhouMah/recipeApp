@@ -62,20 +62,34 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
             )
             acSpinner.adapter = adapter
 
+            var userSelected = false
+
+            acSpinner?.setOnTouchListener { _, _ ->
+                userSelected = true
+                false // Allow default behavior
+            }
+
+            acSpinner.setSelection(viewModel.selectedRecipeId)
+
+
             acSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    p0: AdapterView<*>?, view: View?,
+                    parent: AdapterView<*>?, view: View?,
                     position: Int,
                     id: Long
                 ) {
+                    if (userSelected) {
+                        viewModel.setSelectedFoodType(position)
+                    }
 
-                    val foodTypeIds = FoodType.values().find { it.ordinal == position }?.ids ?: -1
+                    val foodTypeIds = FoodType.values().find { it.ordinal == viewModel.selectedRecipeId }?.ids ?: -1
                     val newRecipeList = recipeList.filter { it.type == foodTypeIds }
                     updateRecipeList(newRecipeList)
                 }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
+
         }
     }
 
