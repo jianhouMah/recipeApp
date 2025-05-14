@@ -33,6 +33,14 @@ android {
             multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            initWith(buildTypes.release)
+            signingConfig signingConfigs.debug
+            debuggable true
+            buildConfigField "String", "RECIPE_URL", '"https://www.themealdb.com/api/json/v1/1/"'
+            //https://www.themealdb.com/api.php
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -81,6 +89,8 @@ dependencies {
         exclude group: 'com.squareup.okio', module: 'okio'
     }
 
+    //Log
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // SmartRefreshLayout
     implementation 'io.github.scwang90:refresh-layout-kernel:2.0.6'

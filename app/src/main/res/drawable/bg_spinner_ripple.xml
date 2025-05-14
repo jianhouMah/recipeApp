@@ -1,5 +1,0 @@
-<!-- res/drawable/spinner_background_ripple.xml -->
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/grey_636379">
-    <item android:drawable="@drawable/bg_spinner" />
-</ripple>

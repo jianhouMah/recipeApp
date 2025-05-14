@@ -2,6 +2,7 @@ package com.example.recipeapp
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.recipeapp.di.appModule
 import com.example.recipeapp.di.repoModule
 import com.example.recipeapp.di.useCaseModule
 import com.example.recipeapp.di.viewModelModule
@@ -17,10 +18,9 @@ class MyApp : Application() {
             androidContext(this@MyApp)
             modules(
                 listOf(
-                    viewModelModule,
-                    //  appUtilModule,
-//                    retrofitModule,
+                    appModule,
                     repoModule,
+                    viewModelModule,
                     useCaseModule,
                 )
             )

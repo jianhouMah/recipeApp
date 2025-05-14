@@ -18,8 +18,6 @@ import com.example.recipeapp.databinding.FragmentDetailRecipeBinding
 import com.example.recipeapp.model.RecipeList
 import com.example.recipeapp.utils.AppUtils
 import com.example.recipeapp.view.base.BaseFragment
-import com.example.recipeapp.view.lobby.LobbyFragmentDirections
-import com.example.recipeapp.view.lobby.item.RecipeItem
 import org.koin.core.component.KoinComponent
 
 class DetailRecipeFragment : BaseFragment<DetailRecipeViewModel, FragmentDetailRecipeBinding>(), KoinComponent {
@@ -44,7 +42,7 @@ class DetailRecipeFragment : BaseFragment<DetailRecipeViewModel, FragmentDetailR
             }
 
             tvTitle.text = if (args?.isDetails == false) "Create Recipe" else ""
-            ivEdit.visibility = if (args?.isDetails == false) View.INVISIBLE else View.VISIBLE
+            ivEdit.visibility = if (args?.isDetails == false || args.recipe?.isEditable == false) View.INVISIBLE else View.VISIBLE
             ivRemove.visibility = if (args?.isDetails == false) View.INVISIBLE else View.VISIBLE
             ivAddImage.visibility = if (args?.isDetails == false) View.VISIBLE else View.GONE
 
@@ -71,7 +69,8 @@ class DetailRecipeFragment : BaseFragment<DetailRecipeViewModel, FragmentDetailR
                     image = imagePath ?: args.recipe?.image ?: "",
                     type = FoodType.values().find { it.ordinal == foodTypePosition }?.ids ?: FoodType.MAIN_COURSE.ids,
                     ingredient = etIngredient.text.toString(),
-                    steps = etSteps.text.toString()
+                    steps = etSteps.text.toString(),
+                    isEditable = true
                 )
 
                 if (lastRecipeListIds != -1) {

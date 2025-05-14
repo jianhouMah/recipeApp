@@ -21,9 +21,6 @@ class RecipeRepository(private val context: Context) {
     private val file = File(context.filesDir, "recipetypes.json")
 
     fun initializeFile() {
-        if (file.exists()) {
-            file.delete()
-        }
         if (!file.exists()) {
             val inputStream = context.resources.openRawResource(R.raw.recipetypes)
             val json = inputStream.bufferedReader().use { it.readText() }
@@ -37,7 +34,6 @@ class RecipeRepository(private val context: Context) {
         return Gson().fromJson(json, object : TypeToken<List<RecipeList>>() {}.type)
     }
 
-    // Save recipes to file
     private fun saveRecipes(recipes: List<RecipeList>) {
         val json = Gson().toJson(recipes)
         file.writeText(json)
@@ -49,7 +45,9 @@ class RecipeRepository(private val context: Context) {
             val uri = Uri.parse(newRecipe.image)
             val bitmap = getBitmapFromUri(uri)
             if (bitmap != null) {
-                if (saveImageToFile(bitmap, newRecipe.name).isNotEmpty()) {
+                val savedImagePath = saveImageToFile(bitmap, newRecipe.name)
+                if (savedImagePath.isNotEmpty()) {
+                    newRecipe.image = savedImagePath
                     recipes.add(newRecipe)
                     saveRecipes(recipes)
                     true
@@ -72,7 +70,9 @@ class RecipeRepository(private val context: Context) {
             val uri = Uri.parse(updatedRecipe.image)
             val bitmap = getBitmapFromUri(uri)
             return if (bitmap != null) {
-                if (saveImageToFile(bitmap, updatedRecipe.name).isNotEmpty()) {
+                val savedImagePath = saveImageToFile(bitmap, updatedRecipe.name)
+                if (savedImagePath.isNotEmpty()) {
+                    updatedRecipe.image = savedImagePath  // update image path here!
                     recipes[index] = updatedRecipe
                     saveRecipes(recipes)
                     true

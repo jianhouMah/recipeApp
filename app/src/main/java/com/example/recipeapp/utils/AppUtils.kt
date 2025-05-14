@@ -13,25 +13,31 @@ object AppUtils : KoinComponent {
     fun glidePicture(
         imageSource: Any?,
         imageView: ImageView?,
-        backupImg: Int? = R.drawable.ic_food_placeholder
+        backupImg: Int = R.drawable.ic_food_placeholder
     ) {
-        getPicasso(imageSource, backupImg)?.into(imageView)
+        createRequest(imageSource, backupImg)
+            ?.error(backupImg)
+            ?.placeholder(backupImg)
+            ?.resize(1024, 1024)
+            ?.centerCrop()
+            ?.into(imageView)
     }
 
-    private fun getPicasso(source: Any?, backupImg: Int?): RequestCreator? {
-        val pGet = Picasso.get()
+    private fun createRequest(source: Any?, backupImg: Int): RequestCreator? {
+        val picasso = Picasso.get()
 
-        val picasso: RequestCreator? = when (source) {
-            is String -> if (source.isNotEmpty()) pGet.load(source) else null
-            is Int -> pGet.load(source)
-            is Uri -> pGet.load(source)
-            is File -> pGet.load(source)
-            else -> backupImg?.let { pGet.load(it) }
-        }
+        return when (source) {
+            is String -> when {
+                source.isBlank() -> null
+                source.startsWith("http", true) -> picasso.load(source)
+                else -> picasso.load(File(source))
+            }
 
-        return picasso?.resize(1024, 1024)?.centerCrop()?.apply {
-            backupImg?.let { error(it).placeholder(it) }
+            is File -> picasso.load(source)
+            is Uri -> picasso.load(source)
+            is Int -> picasso.load(source)
+
+            else -> picasso.load(backupImg)
         }
     }
-
 }

@@ -8,8 +8,9 @@ data class RecipeList(
     val id: Int,
     val creator: String,
     val name: String,
-    val image: String,
+    var image: String,
     val type: Int,
     val ingredient: String,
-    val steps: String
+    val steps: String,
+    val isEditable: Boolean
 ) : Parcelable

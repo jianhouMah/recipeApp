@@ -6,7 +6,8 @@
     "image": "ic_food_pizza",
     "type": 0,
     "ingredient": "2 cups flour, 1 tsp yeast, 1/2 cup water, 1/4 cup tomato sauce, 1 cup mozzarella cheese, toppings (pepperoni, vegetables)",
-    "steps": "1. Mix flour, yeast, and water to form dough. 2. Let dough rise for 1 hour. 3. Roll out the dough and spread tomato sauce. 4. Add cheese and toppings. 5. Bake at 220°C (425°F) for 15 minutes."
+    "steps": "1. Mix flour, yeast, and water to form dough. 2. Let dough rise for 1 hour. 3. Roll out the dough and spread tomato sauce. 4. Add cheese and toppings. 5. Bake at 220°C (425°F) for 15 minutes.",
+    "isEditable": true
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "image": "ic_food_spagetti",
     "type": 0,
     "ingredient": "200g spaghetti, 1 tbsp olive oil, 2 garlic cloves, 1/2 onion, 1 cup tomato sauce, salt, pepper, basil",
-    "steps": "1. Boil spaghetti until al dente. 2. In a pan, sauté garlic and onion in olive oil. 3. Add tomato sauce, salt, and pepper. Simmer for 10 minutes. 4. Mix sauce with spaghetti. Garnish with basil."
+    "steps": "1. Boil spaghetti until al dente. 2. In a pan, sauté garlic and onion in olive oil. 3. Add tomato sauce, salt, and pepper. Simmer for 10 minutes. 4. Mix sauce with spaghetti. Garnish with basil.",
+    "isEditable": true
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@
     "image": "ic_food_cake",
     "type": 2,
     "ingredient": "2 cups flour, 1 cup sugar, 1/2 cup butter, 2 eggs, 1 cup milk, 1 tsp baking powder, vanilla extract",
-    "steps": "1. Preheat oven to 180°C (350°F). 2. Cream butter and sugar. Add eggs one at a time. 3. Mix in flour, baking powder, and milk. 4. Pour into a greased pan. 5. Bake for 30-35 minutes."
+    "steps": "1. Preheat oven to 180°C (350°F). 2. Cream butter and sugar. Add eggs one at a time. 3. Mix in flour, baking powder, and milk. 4. Pour into a greased pan. 5. Bake for 30-35 minutes.",
+    "isEditable": true
   },
   {
     "id": 4,
@@ -33,7 +36,8 @@
     "image": "ic_food_cake",
     "type": 0,
     "ingredient": "2 cups cooked rice, 1 egg, 1/2 cup peas, 1/2 cup diced carrots, 2 tbsp soy sauce, 1 tbsp sesame oil, chopped scallions",
-    "steps": "1. Heat oil in a pan. Scramble the egg and set aside. 2. Stir-fry carrots and peas. 3. Add cooked rice and soy sauce. 4. Mix in scrambled egg and scallions. Cook for 2 more minutes."
+    "steps": "1. Heat oil in a pan. Scramble the egg and set aside. 2. Stir-fry carrots and peas. 3. Add cooked rice and soy sauce. 4. Mix in scrambled egg and scallions. Cook for 2 more minutes.",
+    "isEditable": true
   },
   {
     "id": 5,
@@ -42,7 +46,8 @@
     "image": "ic_food_cake",
     "type": 1,
     "ingredient": "2 eggs, 2 tbsp milk, salt, pepper, 1/4 cup chopped onions, 1/4 cup bell peppers, 1/4 cup cheese",
-    "steps": "1. Beat eggs with milk, salt, and pepper. 2. Pour into a hot pan. 3. Add vegetables and cheese. 4. Cook until edges are set, fold, and cook for another minute."
+    "steps": "1. Beat eggs with milk, salt, and pepper. 2. Pour into a hot pan. 3. Add vegetables and cheese. 4. Cook until edges are set, fold, and cook for another minute.",
+    "isEditable": true
   },
   {
     "id": 6,
@@ -51,6 +56,7 @@
     "image": "ic_food_cake",
     "type": 1,
     "ingredient": "1 cup flour, 1 egg, 1 cup milk, 2 tbsp sugar, 1 tsp baking powder, butter for cooking",
-    "steps": "1. Mix flour, sugar, and baking powder. 2. Add milk and egg. Stir until smooth. 3. Heat a pan with butter. 4. Pour batter and cook until bubbles form, then flip. Cook other side until golden."
+    "steps": "1. Mix flour, sugar, and baking powder. 2. Add milk and egg. Stir until smooth. 3. Heat a pan with butter. 4. Pour batter and cook until bubbles form, then flip. Cook other side until golden.",
+    "isEditable": true
   }
 ]
