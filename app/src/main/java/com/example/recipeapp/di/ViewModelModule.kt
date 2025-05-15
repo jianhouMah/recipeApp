@@ -19,7 +19,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        LobbyViewModel(get())
+        LobbyViewModel(get(), get())
     }
 
     viewModel {

@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeapp.R
 import com.example.recipeapp.data.FoodType
 import com.example.recipeapp.databinding.FragmentLobbyBinding
+import com.example.recipeapp.model.GetRecipeApiList
 import com.example.recipeapp.model.RecipeList
 import com.example.recipeapp.view.base.BaseFragment
 import com.example.recipeapp.view.home.HomeActivity
+import com.example.recipeapp.view.lobby.item.ApiRecipeItem
 import com.example.recipeapp.view.lobby.item.RecipeItem
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
@@ -22,6 +24,10 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
 
     private val groupieAdapter = GroupieAdapter()
     private val section = Section()
+
+    private val apiGroupieAdapter = GroupieAdapter()
+    private val apiSection = Section()
+
     private var recipeList: List<RecipeList> = emptyList()
 
     override fun getLayout(): Int = R.layout.fragment_lobby
@@ -29,6 +35,7 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
     override fun setupViews() {
         binding?.apply {
             viewModel.getRecipeList()
+            viewModel.getApiRecipeList()
 
             rvRecipe.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -36,6 +43,14 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
             }
             groupieAdapter.clear()
             groupieAdapter.update(listOf(section))
+
+
+            rvApiRecipe.apply {
+                layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                adapter = apiGroupieAdapter
+            }
+            apiGroupieAdapter.clear()
+            apiGroupieAdapter.update(listOf(apiSection))
         }
 
     }
@@ -50,9 +65,15 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
                     println("getRecipeList $it")
                 }
             }
+
+            viewModel.getApiRecipeList.observe(viewLifecycleOwner) {
+                it?.let {
+                    setupApiRecipeList(it)
+                    println("getApiRecipeList $it")
+                }
+            }
         }
     }
-
     private fun setupFoodTypeSpinner() {
         binding?.apply {
             val adapter = ArrayAdapter(
@@ -92,7 +113,6 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
 
         }
     }
-
     private fun updateRecipeList(recipeList: List<RecipeList>) {
         binding?.apply {
             val recipe = recipeList?.sortedByDescending { it.id }?.map { recipeList ->
@@ -103,6 +123,19 @@ class LobbyFragment : BaseFragment<LobbyViewModel, FragmentLobbyBinding>(), Koin
             } ?: emptyList()
 
             section.update(recipe)
+        }
+    }
+
+    private fun setupApiRecipeList(recipeList: List<RecipeList>) {
+        binding?.apply {
+            val recipe = recipeList?.sortedByDescending { it.id }?.map { recipeList ->
+                ApiRecipeItem(recipeList) { rc ->
+                    activity?.hideBtmNav(true)
+                    navigateTo(LobbyFragmentDirections.actionToDetailsRecipe(true, rc))
+                }
+            } ?: emptyList()
+
+            apiSection.update(recipe)
         }
     }
 

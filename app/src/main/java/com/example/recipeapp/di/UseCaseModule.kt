@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val useCaseModule = module {
 
     factory {
-        GetRecipeListUseCase(get(), get())
+        GetRecipeListUseCase(get())
     }
 
     factory {

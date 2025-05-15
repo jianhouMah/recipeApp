@@ -43,9 +43,9 @@ class DetailRecipeFragment : BaseFragment<DetailRecipeViewModel, FragmentDetailR
 
             tvTitle.text = if (args?.isDetails == false) "Create Recipe" else ""
             ivEdit.visibility = if (args?.isDetails == false || args.recipe?.isEditable == false) View.INVISIBLE else View.VISIBLE
-            ivRemove.visibility = if (args?.isDetails == false) View.INVISIBLE else View.VISIBLE
+            ivRemove.visibility = if (args?.isDetails == false || args.recipe?.isEditable == false) View.INVISIBLE else View.VISIBLE
             ivAddImage.visibility = if (args?.isDetails == false) View.VISIBLE else View.GONE
-
+            clSpinner.visibility = if (args.recipe?.isEditable == false) View.GONE else View.VISIBLE
 
             args?.recipe?.let { rl ->
                 tvTitle.text = rl.name
